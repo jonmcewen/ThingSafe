@@ -1,4 +1,4 @@
-package com.macotter.thingstore;
+package com.macotter.thingsafe;
 
 import org.hibernate.validator.constraints.NotEmpty;
 

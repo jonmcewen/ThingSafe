@@ -1,4 +1,4 @@
-package com.macotter.thingstore.core;
+package com.macotter.thingsafe.core;
 
 public class Saying {
 	private final long id;

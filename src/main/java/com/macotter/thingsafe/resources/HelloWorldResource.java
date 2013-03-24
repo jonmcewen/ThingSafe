@@ -1,15 +1,15 @@
-package com.macotter.thingstore.resources;
+package com.macotter.thingsafe.resources;
 
 import java.util.concurrent.atomic.AtomicLong;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.google.common.base.Optional;
-import com.macotter.thingstore.core.Saying;
+import com.macotter.thingsafe.auth.User;
+import com.macotter.thingsafe.core.Saying;
+import com.yammer.dropwizard.auth.Auth;
 import com.yammer.metrics.annotation.Timed;
 
 @Path("/hello-world")
@@ -27,8 +27,8 @@ public class HelloWorldResource {
 
 	@GET
 	@Timed
-	public Saying sayHello(@QueryParam("name") Optional<String> name) {
+	public Saying sayHello(@Auth User user) {
 		return new Saying(counter.incrementAndGet(), String.format(template,
-				name.or(defaultName)));
+				user.getName()));
 	}
 }

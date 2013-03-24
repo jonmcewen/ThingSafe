@@ -1,9 +1,12 @@
-package com.macotter.thingstore;
+package com.macotter.thingsafe;
 
-import com.macotter.thingstore.HelloWorldConfiguration;
-import com.macotter.thingstore.core.TemplateHealthCheck;
-import com.macotter.thingstore.resources.HelloWorldResource;
+import com.macotter.thingsafe.auth.OAuthProvider;
+import com.macotter.thingsafe.auth.OAuthStub;
+import com.macotter.thingsafe.auth.User;
+import com.macotter.thingsafe.core.TemplateHealthCheck;
+import com.macotter.thingsafe.resources.HelloWorldResource;
 import com.yammer.dropwizard.Service;
+import com.yammer.dropwizard.auth.Authenticator;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
 
@@ -25,6 +28,8 @@ public class HelloWorldService extends Service<HelloWorldConfiguration> {
 		environment.addResource(new HelloWorldResource(template, defaultName));
 		environment.addHealthCheck(new TemplateHealthCheck(template));
 
+		// auth
+		Authenticator<String, User> auth = new OAuthStub();
+		environment.addProvider(new OAuthProvider<User>(auth));
 	}
-
 }

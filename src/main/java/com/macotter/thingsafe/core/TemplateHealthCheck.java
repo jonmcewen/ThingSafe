@@ -1,4 +1,4 @@
-package com.macotter.thingstore.core;
+package com.macotter.thingsafe.core;
 
 import com.yammer.metrics.core.HealthCheck;
 
