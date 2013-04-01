@@ -24,6 +24,11 @@
 			<artifactId>dropwizard-auth</artifactId>
 			<version>0.6.1</version>
 		</dependency>
+		<dependency>
+			<groupId>com.macotter</groupId>
+			<artifactId>thingstore</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -90,7 +95,15 @@
 									implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.macotter.thingsafe.HelloWorldService</mainClass>
+									<mainClass>com.macotter.thingsafe.ThingSafeService</mainClass>
+								</transformer>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.handlers</resource>
+								</transformer>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.schemas</resource>
 								</transformer>
 							</transformers>
 						</configuration>
