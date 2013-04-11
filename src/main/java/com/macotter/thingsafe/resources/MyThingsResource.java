@@ -33,7 +33,10 @@ public class MyThingsResource {
 	@GET
 	@Timed
 	public List<Thing> getMyThings(@Auth User user) {
-		return this.store.findByThingKeyUser(user.getName());
+
+		List<Thing> things = this.store.findByThingKeyUser(user.getName());
+		log.info("getMyThings({}) returns: {}", user, things);
+		return things;
 	}
 
 	@PUT
